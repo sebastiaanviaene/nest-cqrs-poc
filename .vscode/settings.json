@@ -1,0 +1,6 @@
+{
+  "mochaExplorer.files": "dist/**/*.spec.js",
+  "mochaExplorer.watch": "dist/**/*.spec.js",
+  "mochaExplorer.require": ["source-map-support/register"],
+  "mochaExplorer.env": { "NODE_ENV": "test" }
+}
