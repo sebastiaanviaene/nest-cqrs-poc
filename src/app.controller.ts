@@ -5,7 +5,7 @@ import { BaseController } from './utils/controller.base';
 @Controller()
 export class AppController extends BaseController {
   @Post('/hello')
-  getHello(@Body() helloBody: HelloBody) {
+  getHello(@Body() helloBody: HelloBody): Promise<HelloBody> {
     return this.execute(helloBody);
   }
 }
