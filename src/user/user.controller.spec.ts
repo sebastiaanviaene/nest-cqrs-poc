@@ -1,10 +1,10 @@
+import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { AppModule } from 'app.module';
 import * as request from 'supertest';
 import { initValidation } from 'utils/initSerialization';
 
-describe('AppController', () => {
+describe('UserController', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
