@@ -1,11 +1,9 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { HelloBody } from './hello/contracts/body/hello.body';
-import { BaseController } from './utils/controller.base';
+import { Controller, Get } from '@nestjs/common';
 
 @Controller()
-export class AppController extends BaseController {
-  @Post('/hello')
-  getHello(@Body() helloBody: HelloBody): Promise<HelloBody> {
-    return this.execute(helloBody);
+export class AppController {
+  @Get('/app')
+  helloWorld() {
+    return 'Hello World!';
   }
 }

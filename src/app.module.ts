@@ -1,12 +1,18 @@
+import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { Module } from '@nestjs/common';
+import { UserModule } from 'user/user.module';
+
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { CqrsModule } from '@nestjs/cqrs';
-import { HelloHandler } from 'hello/handlers/hello.handler';
+import config from './mikro-orm.config';
 
 @Module({
-  imports: [CqrsModule],
+  imports: [
+    MikroOrmModule.forRoot({
+      ...config,
+      tsNode: false,
+    }),
+    UserModule,
+  ],
   controllers: [AppController],
-  providers: [AppService, HelloHandler],
 })
 export class AppModule {}

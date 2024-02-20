@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -5,7 +6,6 @@ import { initValidation } from 'utils/initSerialization';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  initValidation(app);
 
   const config = new DocumentBuilder()
     .setTitle('Nest CQRS')
@@ -20,6 +20,8 @@ async function bootstrap() {
     },
     customSiteTitle: 'Nest poc API Docs',
   });
+
+  initValidation(app);
 
   await app.listen(3000);
 }

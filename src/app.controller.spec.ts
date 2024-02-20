@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { AppModule } from 'app.module';
 import * as request from 'supertest';
+import { initValidation } from 'utils/initSerialization';
 
 describe('AppController', () => {
   let app: INestApplication;
@@ -12,17 +13,17 @@ describe('AppController', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
-    app.useGlobalPipes(new ValidationPipe({ transform: true }));
+    initValidation(app);
     await app.init();
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', async () => {
+    it('should return user', async () => {
       await request(app.getHttpServer())
-        .post('/hello')
-        .send({ name: 'Seba' })
+        .post('/users')
+        .send({ firstName: 'Seba' })
         .expect(201)
-        .expect('Hello, Seba!');
+        .expect({ firstName: 'Seba' });
     });
   });
 });
